@@ -4,9 +4,8 @@ import java.util.Random;
 
 public class JogadorAzarado extends Jogador {
 
-	public JogadorAzarado(String nome, String cor) {
-		super(nome, cor);
-		this.posicao = 0;
+	public JogadorAzarado(String nome, String cor, int posicao) {
+		super(nome, cor, posicao);
 		this.ativo = true;
 		this.tipo = "Jogador azarado";
 	}
@@ -26,15 +25,15 @@ public class JogadorAzarado extends Jogador {
 		
 		if (j.ativo == true) {
 			if (dado1 == dado2) {
+				j.setPosicao(j.getPosicao() + quantAndar);
+				System.out.format("\nJogador: %s(%s) tirou %d, %d, e andou %d\n", j.getCor(), j.getNome(), dado1, dado2, dado1 + dado2);
 				System.out.format("\nJogador: %s pegou dados iguais e ganhou o direito de jogar mais uma vez os dados\n", j.getNome());
-				j.mudarPosicao(j, geradorNum);
-				System.out.format("\nJogador: %s(%s) andou %d\n", j.getCor(), j.getNome(), dado1 + dado2);
 				return j.mudarPosicao(j, geradorNum);
 			}
 			
 			j.setPosicao(j.getPosicao() + quantAndar);
 			
-			System.out.format("\nJogador: %s(%s) andou %d\n", j.getCor(), j.getNome(), dado1 + dado2);
+			System.out.format("\nJogador: %s(%s) tirou %d, %d e andou %d\n", j.getCor(), j.getNome(), dado1, dado2, dado1 + dado2);
 		}
 		
 		return 0;

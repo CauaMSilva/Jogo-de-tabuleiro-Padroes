@@ -9,7 +9,7 @@ public class Tabuleiro {
 	public Tabuleiro() {
 		for (int i = 0; i < totalCasas; i++) {
 			casas[i] = "casa normal";
-			if (i + 1 == 5 || i + 1 == 15 || i + 1 == 30) 
+			if (i + 1 == 5 || i + 1 == 15 || i + 1 == 30)
 				casas[i] = "casa da sorte";
 			else if (i + 1 == 10 || i + 1 == 25 || i + 1 == 38) 
 				casas[i] = "casa stop";
@@ -40,7 +40,7 @@ public class Tabuleiro {
 	
 	public int verificarVitorioso(Jogador j) {
 		if (j.getPosicao() > 39) {
-			System.out.println("TEMOS UM VENCEDOR!!!\n\n");
+			System.out.println("\nTEMOS UM VENCEDOR!!!\n\n");
 			System.out.format("Jogador(a): %s venceuu!\n", j.getNome());
 			return 1;
 		}
@@ -93,7 +93,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	public void casaCoringa(Jogador j, ArrayList<Jogador> jogadores) {
+	public int casaCoringa(Jogador j, ArrayList<Jogador> jogadores) {
 		int menorLugar = 50;
 		int auxiliar = j.getPosicao();
 		Jogador ultimo = null;
@@ -106,10 +106,37 @@ public class Tabuleiro {
 		if (j.getPosicao() != menorLugar) {
 			j.setPosicao(ultimo.getPosicao());
 			ultimo.setPosicao(auxiliar);
+			System.out.format("\nJogador: %s(%s) trocou de lugar com %s(%s)\n", j.getCor(), j.getNome(), ultimo.getCor(), ultimo.getNome());
+			return 0;
 		}
+		return 0;
+	}
+
+	public int casaSurpresa(Jogador j, ArrayList<Jogador> jogadores, Random r) {
+		int tipoRecebido = r.nextInt(3);
+		String[] cartas = {"jogador normal", "jogador azarado", "jogador sortudo"};
+		String nome = j.getNome();
+		String cor = j.getCor();
+		int posicao = j.getPosicao();
+
+		if (cartas[tipoRecebido] == j.getClasse()){
+			return casaSurpresa(j, jogadores, r);
+		}
+
+		for (int i = 0; i < jogadores.size(); i++){
+			if (jogadores.get(i).getNome() == j.getNome()){
+				jogadores.remove(i);
+			}
+		}
+
+		if (cartas[tipoRecebido].equals("jogador normal")) jogadores.add(new Jogador(nome, cor, posicao));
+		if (cartas[tipoRecebido].equals("jogador azarado")) jogadores.add(new JogadorAzarado(nome, cor, posicao));
+		if (cartas[tipoRecebido].equals("jogador sortudo")) jogadores.add(new JogadorSortudo(nome, cor, posicao));
+
+		return 0;
 	}
 	
-	public void verificarCasa(Jogador j, ArrayList<Jogador> jogadores,Tabuleiro t, Scanner read){
+	public void verificarCasa(Jogador j, ArrayList<Jogador> jogadores,Tabuleiro t, Scanner read, Random r){
 		if (j.getPosicao() > 0 && j.getPosicao() < 41) {
 			if (casas[j.getPosicao()-1].equals("casa da sorte")) {
 				System.out.format("\nJogador: %s(%s) caiu na casa da sorte e andou mais 3 casas\n", j.getCor(), j.getNome());
@@ -129,6 +156,7 @@ public class Tabuleiro {
 			}
 			else if(casas[j.getPosicao()-1].equals("casa surpresa")) {
 				System.out.format("\nJogador: %s(%s) caiu na casa da surpresa\n", j.getCor(), j.getNome());
+				casaSurpresa(j, jogadores, r);
 			
 			}
 		}

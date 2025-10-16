@@ -9,10 +9,10 @@ public class Jogador {
 	protected boolean ativo = true;
 	private int turnosBloqueados = 0;
 	
-	public Jogador(String nome, String cor) {
+	public Jogador(String nome, String cor, int posicao) {
 		this.nome = nome;
 		this.cor = cor;
-		this.posicao = 0;
+		this.posicao = posicao;
 		this.tipo = "Jogador normal";
 		this.ativo = true;
 	}
@@ -87,7 +87,7 @@ public class Jogador {
 	public void verificarAtivo(Jogador j) {
 		if (j.getTurnosBloqueados() > 0) {
 			j.setAtivo(false);
-			System.out.format("%s(%s) teve o turno bloqueado", j.getCor(), j.getNome());
+			System.out.format("\nJogador: %s(%s) teve o turno bloqueado\n", j.getCor(), j.getNome());
 			j.setTurnosBloqueados(j.getTurnosBloqueados() - 1);
 		}
 		else {

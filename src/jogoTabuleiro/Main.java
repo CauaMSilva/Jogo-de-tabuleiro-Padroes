@@ -13,7 +13,7 @@ public class Main {
 		
 		jogo.cadastrarJogadores(read, jogadores, rand);
 		if (jogo.tiposSuficientes(jogadores)) {
-			jogo.partida(jogadores, tabuleiro, read);
+			jogo.partida(jogadores, tabuleiro, read, rand);
 		}
 		
 		
