@@ -95,28 +95,31 @@ public class Jogo {
 		return 0;
 	}
 	
-	public void partida(ArrayList<Jogador> jogadores, Tabuleiro tabuleiro, Scanner read, Random rand) {
-		
+	public void partida(ArrayList<Jogador> jogadores, Tabuleiro tabuleiro, Scanner read, Random rand, Debug debug) {
 		int venceu = 0;
 		
 		while (venceu == 0) {
 			for (int i = 0; i < jogadores.size(); i++) {
 				jogadores.get(i).verificarAtivo(jogadores.get(i));
 				if (jogadores.get(i).getAtivo()) {
-					Jogador jogadorTurnoAtual = jogadores.get(i);
-					jogadores.get(i).mudarPosicao(jogadorTurnoAtual, new Random());
-					tabuleiro.verificarCasa(jogadorTurnoAtual, jogadores, tabuleiro, read, rand);
-					venceu = tabuleiro.verificarVitorioso(jogadores.get(i));
-					if (venceu != 0) {
-						break;
-					
+					if (debug.getDebugAtivo()){
+						Jogador jogadorTurnoAtual0 = jogadores.get(i);
+						debug.forcarCasa(jogadorTurnoAtual0, read);
+						tabuleiro.verificarCasa(jogadorTurnoAtual0, jogadores, tabuleiro, read, rand);
+						venceu = tabuleiro.verificarVitorioso(jogadores.get(i));
+						if (venceu != 0) break;
 					}
-				}
+					else {
+						Jogador jogadorTurnoAtual = jogadores.get(i);
+						jogadores.get(i).mudarPosicao(jogadorTurnoAtual, rand);
+						tabuleiro.verificarCasa(jogadorTurnoAtual, jogadores, tabuleiro, read, rand);
+						venceu = tabuleiro.verificarVitorioso(jogadores.get(i));
+						if (venceu != 0) break;
+					}
+				}	
 			}
-
 			tabuleiro.relatorioGeral(jogadores, tabuleiro);
 			tabuleiro.mudarTurno();
 		}
 	}
 }
-

@@ -109,32 +109,37 @@ public class Tabuleiro {
 			System.out.format("\nJogador: %s(%s) trocou de lugar com %s(%s)\n", j.getCor(), j.getNome(), ultimo.getCor(), ultimo.getNome());
 			return 0;
 		}
+
+		System.out.format("\nJogador: %s(%s) se permaneceu no mesmo lugar, pois é o ultimo\n\n", j.getCor(), j.getNome());
+		
 		return 0;
+
 	}
 
 	public int casaSurpresa(Jogador j, ArrayList<Jogador> jogadores, Random r) {
-		int tipoRecebido = r.nextInt(3);
-		String[] cartas = {"jogador normal", "jogador azarado", "jogador sortudo"};
-		String nome = j.getNome();
-		String cor = j.getCor();
-		int posicao = j.getPosicao();
+    int tipoRecebido = r.nextInt(3);
+    String[] cartas = {"jogador normal", "jogador azarado", "jogador sortudo"};
+    String nome = j.getNome();
+    String cor = j.getCor();
+    int posicao = j.getPosicao();
+	int indice = jogadores.indexOf(j);
 
-		if (cartas[tipoRecebido] == j.getClasse()){
-			return casaSurpresa(j, jogadores, r);
-		}
+    while (cartas[tipoRecebido].equals(j.getClasse())) {
+        tipoRecebido = r.nextInt(3);
+    }
 
-		for (int i = 0; i < jogadores.size(); i++){
-			if (jogadores.get(i).getNome() == j.getNome()){
-				jogadores.remove(i);
-			}
-		}
+    jogadores.remove(j);
 
-		if (cartas[tipoRecebido].equals("jogador normal")) jogadores.add(new Jogador(nome, cor, posicao));
-		if (cartas[tipoRecebido].equals("jogador azarado")) jogadores.add(new JogadorAzarado(nome, cor, posicao));
-		if (cartas[tipoRecebido].equals("jogador sortudo")) jogadores.add(new JogadorSortudo(nome, cor, posicao));
+	if (cartas[tipoRecebido].equals("jogador normal")) 
+		jogadores.add(indice, new Jogador(nome, cor, posicao));
+    if (cartas[tipoRecebido].equals("jogador azarado")) 
+		jogadores.add(indice, new JogadorAzarado(nome, cor, posicao));
+	if (cartas[tipoRecebido].equals("jogador sortudo")) 
+		jogadores.add(indice, new JogadorSortudo(nome, cor, posicao));
 
-		return 0;
-	}
+    return 0;
+}
+
 	
 	public void verificarCasa(Jogador j, ArrayList<Jogador> jogadores,Tabuleiro t, Scanner read, Random r){
 		if (j.getPosicao() > 0 && j.getPosicao() < 41) {
