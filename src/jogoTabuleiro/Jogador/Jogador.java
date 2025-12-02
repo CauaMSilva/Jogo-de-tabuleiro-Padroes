@@ -3,8 +3,6 @@ import jogoTabuleiro.Abstraçao.TipoJogador;
 import jogoTabuleiro.Interface.Main;
 import jogoTabuleiro.Tabuleiro.Dado;
 
-import java.util.*;
-
 public class Jogador {
 	protected String nome;
 	protected String cor;
@@ -65,11 +63,11 @@ public class Jogador {
             dados = Dado.rolarDados();
             passos = Dado.calcularPassos(dados);
             if(!aplicarRegraEspecialDados(dados, passos)) {
-                System.out.format("Rolagem Inválida pela regra especial. Tentando nova rolagem de dados...");
+                System.out.format("\nRolagem Inválida pela regra especial\nTentando nova rolagem de dados...");
                 continue;
             }
             this.posicao += passos;
-            System.out.format("\nJogador: %s %s%s  tirou %d, %d, e andou %d (Nova Posição %d).", this.getCor(), this.getNome(),Main.ANSI_RESET, this.getPosicao(), dados[0], dados[1], passos,this.getPosicao());
+            System.out.format("\nJogador: %s %s%s  tirou %d, %d, e andou %d (Nova Posição %d).\n", this.getCor(), this.getNome(),Main.ANSI_RESET, dados[0], dados[1], passos,this.getPosicao());
             if (dados[0] == dados[1]) {
                 System.out.format("-> Jogador: %s pegou dados iguais e ganhou o direito de jogar mais uma vez!\n", this.nome);
                 continuarJogando = true; // Repete o loop

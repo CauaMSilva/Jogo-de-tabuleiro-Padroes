@@ -1,13 +1,12 @@
 package jogoTabuleiro.Interface;
 
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 import jogoTabuleiro.Controles.Debug;
 import jogoTabuleiro.Controles.Jogo;
 import jogoTabuleiro.Jogador.Jogador;
 import jogoTabuleiro.Tabuleiro.Tabuleiro;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
 
