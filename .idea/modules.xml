@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Jogo-de-tabuleiro-Refatorado.iml" filepath="$PROJECT_DIR$/Jogo-de-tabuleiro-Refatorado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Jogo-de-tabuleiro-Padroes.iml" filepath="$PROJECT_DIR$/.idea/Jogo-de-tabuleiro-Padroes.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,6 @@
-package jogoTabuleiro.Jogador;
+package src.Jogador;
 
-import jogoTabuleiro.Abstracao.TipoJogador;
+import src.Abstracao.TipoJogador;
 
 public class JogadorAzarado extends Jogador {
 

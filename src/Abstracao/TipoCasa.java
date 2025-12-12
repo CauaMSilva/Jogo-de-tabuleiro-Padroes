@@ -1,4 +1,4 @@
-package jogoTabuleiro.Abstracao;
+package src.Abstracao;
 
 public enum TipoCasa {
     NORMAL("Casa Normal"),

@@ -1,8 +1,8 @@
-package jogoTabuleiro.Jogador;
+package src.Jogador;
 
 import java.util.Random;
 
-import jogoTabuleiro.Abstracao.TipoJogador;
+import src.Abstracao.TipoJogador;
 
 public class FabricadeJogador {
     public static Jogador criarJogador(String nome, String cor, int posicao, TipoJogador tipo) {
@@ -11,7 +11,7 @@ public class FabricadeJogador {
         } else if (tipo == TipoJogador.SORTUDO) {
             return new JogadorSortudo(nome, cor, posicao);
         } else {
-            return new Jogador(nome, cor, posicao, TipoJogador.NORMAL);
+            return new JogadorNormal(nome, cor, posicao);
         }
     }
 

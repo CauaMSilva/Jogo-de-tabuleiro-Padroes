@@ -1,4 +1,4 @@
-package jogoTabuleiro.Tabuleiro;
+package src.Tabuleiro;
 
 import java.util.Random;
 
@@ -14,5 +14,9 @@ public class Dado {
 
     public static int calcularPassos(int[] dados){
         return dados[0] + dados[1];
+    }
+
+    public static boolean verificarDadosIguais(int[] dados){
+        return dados[0] == dados[1];
     }
 }
