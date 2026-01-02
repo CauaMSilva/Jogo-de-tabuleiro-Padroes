@@ -48,3 +48,9 @@ Cada tipo de casa é responsável por executar seu efeito, promovendo:
 1. Clone o repositório:
 ```bash
 git clone https://github.com/CauaMSilva/Jogo-de-tabuleiro-Padroes
+```
+2. Abra o projeto em uma IDE Java
+
+3. Execute a classe Main.java
+
+4. Siga as instruções exibidas no terminal
