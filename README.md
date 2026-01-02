@@ -48,5 +48,3 @@ Cada tipo de casa é responsável por executar seu efeito, promovendo:
 1. Clone o repositório:
 ```bash
 git clone https://github.com/CauaMSilva/Jogo-de-tabuleiro-Padroes
-- Programação Orientada a Objetos (POO)
-- Padrões de Projeto (GoF)
